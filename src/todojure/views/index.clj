@@ -1,14 +1,25 @@
 (ns todojure.views.index
   (:require [todojure.views.common :as common])
   (:use [noir.core :only [defpage render]]
-        [hiccup.core :only [html]]))
+        [noir.validation :as vali]
+        [hiccup.core :only [html]]
+        [hiccup.form-helpers :only [form-to submit-button]]))
 
-(defpage "/" []
+(defpage "/" {:as item}
   (common/layout
    [:h1 "Todo list"]
    (common/todo-items)
    [:hr]
-   (common/add-todo-form)))
+   (form-to [:post "/"]
+            (common/add-item-fields item)
+            (submit-button "Add"))))
+
+(defn valid? [{:keys [desc]}]
+  (vali/rule (vali/has-value? desc)
+             [:desc "The description can't be void!"])
+  (not (vali/errors? :desc)))
 
 (defpage [:post "/"] {:as item}
-  (do (common/add-todo (:desc item)) (render "/")))
+  (if (valid? item)
+    (do (common/add-todo (:desc item)) (render "/"))
+    (render "/" item)))
