@@ -14,10 +14,9 @@ Note: to generate Noir projects w/ Clojure 1.3 using Leiningen you can use [this
     lein plugin install rplevy/lein-noir 1.3.0
 
 ## ToDo
-- flat list of todos (description), move the list out of Noir stuff
-- select a todo as action
-- list of actions (reverse order)
-- unmark an action (done, readd, not-done?)
+- write documentation with Marginalia
+- use Twitter bootstrap
+- persistence!
 
 ## License
 
