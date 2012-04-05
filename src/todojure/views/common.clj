@@ -22,7 +22,7 @@
   [:li (check-box "" marked) desc])
 
 (defpartial todo-items []
-  [:ol (map todo-item @core/todo-list)])
+  [:ol (map todo-item @core/master-list)])
 
 (defpartial add-item-fields [{:keys [desc]}]
   (vali/on-error :desc error-item)
