@@ -4,3 +4,4 @@ classes
 .lein-deps-sum
 \#*\#
 .\#*
+docs

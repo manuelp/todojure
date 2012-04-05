@@ -14,9 +14,10 @@ Note: to generate Noir projects w/ Clojure 1.3 using Leiningen you can use [this
     lein plugin install rplevy/lein-noir 1.3.0
 
 ## ToDo
-- write documentation with Marginalia
 - use Twitter bootstrap
 - persistence!
+- write the rest of the documentation with Marginalia
+- write api documentation with autodoc
 
 ## License
 
