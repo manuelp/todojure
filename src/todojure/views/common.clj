@@ -3,7 +3,7 @@
         [noir.core :only [defpartial]]
         [noir.validation :as vali]
         [hiccup.page-helpers :only [include-css html5]]
-        [hiccup.form-helpers :only [text-field]]))
+        [hiccup.form-helpers :only [text-field check-box]]))
 
 (defpartial layout [& content]
             (html5
@@ -19,7 +19,7 @@
   [:p.error first-error])
 
 (defpartial todo-item [{:keys [desc marked]}]
-  [:li (if marked [:strong desc] desc)])
+  [:li (check-box "" marked) desc])
 
 (defpartial todo-items []
   [:ol (map todo-item @core/todo-list)])
