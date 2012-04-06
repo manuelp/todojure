@@ -11,13 +11,13 @@
 (defpage "/todo" {:as item}
   (common/layout
    [:h1 "Todo list"]
-   (form-to [:post "/action"]
-            (common/complete-list)
-            (submit-button "Action!"))
-   [:hr]
    (form-to [:post "/todo"]
             (common/add-item-fields item)
-            (submit-button "Add"))))
+            (submit-button "Add"))
+   [:hr]
+   (form-to [:post "/action"]
+            (common/complete-list)
+            (submit-button "Action!"))))
 
 (defn valid? [{:keys [desc]}]
   (vali/rule (vali/has-value? desc)
