@@ -65,7 +65,7 @@
 ;; - **marked** is for, incredibly, mark an item to be later used in
 ;; some way.
 (def master-list (atom [{:desc "Hello" :marked false}
-                        {:desc "Noir" :marked true}
+                        {:desc "Noir" :marked false}
                         {:desc "webapp" :marked false}]
                        :validator (partial every? #(not= "" (:desc %)))))
 
@@ -101,7 +101,7 @@
 (defn reset
   "Unmark all items."
   []
-  (reset-all @master-list))
+  (swap! master-list reset-all))
 
 (defn readd
   "Readd a given item to the tail of the list as unmarked."

@@ -2,7 +2,7 @@
   (:use [todojure.core :as core]
         [noir.core :only [defpartial]]
         [noir.validation :as vali]
-        [hiccup.page-helpers :only [include-css html5]]
+        [hiccup.page-helpers :only [include-css html5 link-to url]]
         [hiccup.form-helpers :only [text-field check-box]]))
 
 (defpartial layout [& content]
@@ -19,10 +19,18 @@
   [:p.error first-error])
 
 (defpartial todo-item [{:keys [desc marked]}]
-  [:li (check-box "" marked) desc])
+  [:li (check-box desc marked) desc])
 
-(defpartial todo-items []
+(defpartial complete-list []
   [:ol (map todo-item @core/master-list)])
+
+(defpartial action-item [{:keys [desc]}]
+  [:li desc " "
+   (link-to (url "/done" {:desc desc}) "Done") " "
+   (link-to (url "/readd" {:desc desc}) "Re-add")])
+
+(defpartial actions-list []
+  [:ol (map action-item (core/compile-small-list))])
 
 (defpartial add-item-fields [{:keys [desc]}]
   (vali/on-error :desc error-item)
