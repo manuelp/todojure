@@ -20,8 +20,9 @@ You can find the documentation at the [official site](http://manuelp.bitbucket.o
     lein marg    
 
 ## ToDo
-- use Twitter bootstrap
 - persistence!
+- complete UI
+- use Twitter bootstrap
 - write the rest of the documentation with Marginalia
 - write api documentation with autodoc
 
@@ -30,4 +31,3 @@ You can find the documentation at the [official site](http://manuelp.bitbucket.o
 Copyright (C) 2012 Manuel Paccagnella
 
 Distributed under the Eclipse Public License, the same as Clojure.
-
