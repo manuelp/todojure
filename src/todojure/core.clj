@@ -1,12 +1,12 @@
 ;; The core of *Todojure* (you can read it as in "to du jour". And no,
-;; I'm not french). It's divided 3 main "areas":
+;; I'm not french). It's divided in 3 main "areas":
 ;; 
 ;; - a **functional model**: it's the heart of the application, a set
 ;; of pure functions that implements all the... core logic.
 ;; - a **mutable model**: this application it's built around a simple
 ;; mutable model, and this area encapsulates all the accesses (both
 ;; read and write) to that state. The stateful model itself is managed
-;; through an *actor* to enable safe synchronous concurrent accesses.
+;; through an *atom* to enable safe synchronous concurrent accesses.
 ;; - a **GUI**: it can be any kind of user interface since the core
 ;; itself is a library that can be used by any client. Currently in
 ;; this application there is a web UI written with the help of the
@@ -14,6 +14,7 @@
 (ns todojure.core)
 
 ;; ## Functional model ##
+
 (defn add-item
   "Append a new (unmarked) item to the list as the last element."
   [items desc]
