@@ -11,7 +11,8 @@
 ;; itself is a library that can be used by any client. Currently in
 ;; this application there is a web UI written with the help of the
 ;; [Noir](http://www.webnoir.org/) library.
-(ns todojure.core)
+(ns todojure.core
+  (require [clojure.string :as s]))
 
 ;; ## Functional model ##
 
@@ -113,3 +114,23 @@
 the first position in the *small list*."
   [desc]
   (swap! master-list add-urgent-item desc))
+
+;; ## Persistence ##
+;; For now, the master list is stored in a flat text
+;; file. It's good enough.
+
+(defn save-list
+  "Save the master list to a file with the given name as a plain text file.
+The format is simply: one description per line."
+  [fname]
+  (letfn [(format-master []
+            (s/join \newline (map :desc @master-list)))]
+    (spit fname (format-master))))
+
+(defn load-list
+  "Load a list of tasks stored in a flat text file with the given name into
+  the atom."
+  [fname]
+  (let [loaded-list (map #(hash-map :desc % :marked false)
+                         (s/split (slurp fname) #"\n"))]
+    (reset! master-list loaded-list)))
