@@ -1,10 +1,11 @@
 body {
     margin: 0 auto;
     width: 600px;
+    font-size: small;
     background-color: silver;
     font-family: "Arial" "times";
 }
 
 a.item-action {
-    font-size: small;
+    font-size: x-small;
 }
