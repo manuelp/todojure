@@ -42,17 +42,36 @@
       (save-all)
       (render "/action")))
 
-(defpage "/action" []
+(defpage "/action" {:as item}
   (common/layout
    [:h1 "Action!"]
    (common/actions-list)
    [:hr]
-   (link-to "/reset" "Reset")))
+   (link-to "/reset" "Reset")
+   [:hr]
+   (form-to [:post "/action/add-normal"]
+            (common/add-item-fields item)
+            (submit-button "Add normal"))
+   (form-to [:post "/action/add-urgent"]
+            (common/add-item-fields item)
+            (submit-button "Add urgent"))))
 
 (defpage "/reset" []
   (do (core/reset)
       (save-all)
       (redirect "/todo")))
+
+(defpage [:post "/action/add-normal"] {:as item}
+  (if (valid? item)
+    (do (core/add-todo (:desc item))
+        (save-all)
+        (redirect "/action"))))
+
+(defpage [:post "/action/add-urgent"] {:as item}
+  (if (valid? item)
+    (do (core/add-urgent (:desc item))
+        (save-all)
+        (redirect "/action"))))
 
 (defpage "/done" {:keys [desc]}
   (do (core/rm desc)
