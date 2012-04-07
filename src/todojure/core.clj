@@ -56,6 +56,12 @@
   (-> (add-item items desc)
       (do-mark desc true)))
 
+(defn preselect-first
+  "Preselect (mark it) the first item in the list."
+  [items]
+  (merge (rest items)
+         (assoc (first items) :marked true)))
+
 ;; ## Mutable model ##
 
 ;; The master list is a sequence of maps, each one describing a todo
@@ -131,4 +137,4 @@ The format is simply: one description per line."
   [fname]
   (let [loaded-list (map #(hash-map :desc % :marked false)
                          (s/split (slurp fname) #"\n"))]
-    (reset! master-list loaded-list)))
+    (reset! master-list (preselect-first loaded-list))))
