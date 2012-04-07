@@ -20,11 +20,7 @@ You can find the documentation at the [official site](http://manuelp.bitbucket.o
     lein marg    
 
 ## ToDo
-- persistence!
-- complete UI
-- use Twitter bootstrap
-- write the rest of the documentation with Marginalia
-- write api documentation with autodoc
+Just run the application :) Otherwise look at the *tasks.txt* file.
 
 ## License
 

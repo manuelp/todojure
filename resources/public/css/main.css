@@ -1,0 +1,10 @@
+body {
+    margin: 0 auto;
+    width: 600px;
+    background-color: silver;
+    font-family: "Arial" "times";
+}
+
+a.item-action {
+    font-size: small;
+}

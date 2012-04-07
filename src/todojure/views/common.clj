@@ -10,6 +10,7 @@
               [:head
                [:title "todojure"]
                ;(include-css "/css/reset.css")
+               (include-css "/css/main.css")
                ]
               [:body
                [:div#wrapper
@@ -26,8 +27,8 @@
 
 (defpartial action-item [{:keys [desc]}]
   [:li desc " "
-   (link-to (url "/done" {:desc desc}) "Done") " "
-   (link-to (url "/readd" {:desc desc}) "Re-add")])
+   [:a {:class "item-action" :href (url "/done" {:desc desc})} "Done"] " "
+   [:a {:class "item-action" :href (url "/readd" {:desc desc})} "Re-add"]])
 
 (defpartial actions-list []
   [:ol (map action-item (core/compile-small-list))])

@@ -1,1 +1,7 @@
-start adding some tasks
+complete action UI
+use Twitter Bootstrap
+Write the rest of documentation with Marginalia
+write API documentation with autodoc
+description editing for tasks in the master list
+validate new items, there shouldn't be two items with the same description!
+preselect first item in the master list
