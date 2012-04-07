@@ -65,9 +65,7 @@
 ;; identifier for every item.
 ;; - **marked** is for, incredibly, mark an item to be later used in
 ;; some way.
-(def master-list (atom [{:desc "Hello" :marked false}
-                        {:desc "Noir" :marked false}
-                        {:desc "webapp" :marked false}]
+(def master-list (atom []
                        :validator (partial every? #(not= "" (:desc %)))))
 
 ;; All the following functions are basically wrappers around the

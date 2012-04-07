@@ -8,16 +8,23 @@
         [hiccup.page-helpers :only [link-to]]
         [hiccup.form-helpers :only [form-to submit-button]]))
 
+(defn save-all []
+  (core/save-list "tasks.txt"))
+
+(defn load-all []
+  (core/load-list "tasks.txt"))
+
 (defpage "/todo" {:as item}
-  (common/layout
-   [:h1 "Todo list"]
-   (form-to [:post "/todo"]
-            (common/add-item-fields item)
-            (submit-button "Add"))
-   [:hr]
-   (form-to [:post "/action"]
-            (common/complete-list)
-            (submit-button "Action!"))))
+  (do (load-all)
+      (common/layout
+       [:h1 "Todo list"]
+       (form-to [:post "/todo"]
+                (common/add-item-fields item)
+                (submit-button "Add"))
+       [:hr]
+       (form-to [:post "/action"]
+                (common/complete-list)
+                (submit-button "Action!")))))
 
 (defn valid? [{:keys [desc]}]
   (vali/rule (vali/has-value? desc)
@@ -26,12 +33,14 @@
 
 (defpage [:post "/todo"] {:as item}
   (if (valid? item)
-    (do (core/add-todo (:desc item)) (render "/todo"))
-    (render "/todo" item)))
+    (do (core/add-todo (:desc item))
+        (save-all)
+        (render "/todo"))))
 
 (defpage [:post "/action"] {:as items}
-  (doall (map core/mark (map name (keys items))))
-  (render "/action"))
+  (do (doall (map core/mark (map name (keys items))))
+      (save-all)
+      (render "/action")))
 
 (defpage "/action" []
   (common/layout
@@ -42,12 +51,15 @@
 
 (defpage "/reset" []
   (do (core/reset)
+      (save-all)
       (redirect "/todo")))
 
 (defpage "/done" {:keys [desc]}
-  (core/rm desc)
-  (redirect "/action"))
+  (do (core/rm desc)
+      (save-all)
+      (redirect "/action")))
 
 (defpage "/readd" {:keys [desc]}
-  (core/readd desc)
-  (redirect "/action"))
+  (do (core/readd desc)
+      (save-all)
+      (redirect "/action")))
