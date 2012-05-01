@@ -1,30 +1,28 @@
-# WARNING
-**This project has changes home: now it's on [github](https://github.com/manuelp/todojure).**
-
-----
-
-# todojure
+# Todojure
 
 A website written in noir. 
 
-## Usage
+## Usage ##
 
-    :::bash
-    lein deps
-    lein run
+```bash
+lein deps
+lein run
+```
 
 Note: to generate Noir projects w/ Clojure 1.3 using Leiningen you can use [this](http://clojars.org/rplevy/lein-noir) plugin:
 
-    :::bash
-    lein plugin install rplevy/lein-noir 1.3.0
+```bash
+lein plugin install rplevy/lein-noir 1.3.0
+```
 
-## Documentation
+## Documentation ##
 You can find the documentation at the [official site](http://manuelp.bitbucket.org/todojure.html). Otherwise, you can generate the latest documentation with Marginalia yourself:
 
-    :::bash
-    lein marg    
+```bash
+lein marg    
+```
 
-## ToDo
+## ToDo ##
 Just run the application :) Otherwise look at the *tasks.txt* file.
 
 ## License
