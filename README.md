@@ -1,3 +1,8 @@
+# WARNING
+**This project has changes home: now it's on [github](https://github.com/manuelp/todojure).**
+
+----
+
 # todojure
 
 A website written in noir. 
