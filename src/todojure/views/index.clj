@@ -5,8 +5,8 @@
         [noir.validation :as vali]
         [noir.response :only [redirect]]
         [hiccup.core :only [html]]
-        [hiccup.page-helpers :only [link-to]]
-        [hiccup.form-helpers :only [form-to submit-button]]))
+        [hiccup.element :only [link-to]]
+        [hiccup.form :only [form-to submit-button]]))
 
 (defn save-all []
   (core/save-list "tasks.txt"))

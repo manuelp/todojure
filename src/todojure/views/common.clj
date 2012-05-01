@@ -2,8 +2,10 @@
   (:use [todojure.core :as core]
         [noir.core :only [defpartial]]
         [noir.validation :as vali]
-        [hiccup.page-helpers :only [include-css html5 link-to url]]
-        [hiccup.form-helpers :only [text-field check-box]]))
+        [hiccup.page :only [include-css html5]]
+        [hiccup.element :only [link-to]]
+        [hiccup.form :only [text-field check-box]]
+        [hiccup.util :only [url]]))
 
 (defpartial layout [& content]
             (html5
